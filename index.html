@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Time Saving Living | AI Finder</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Saving Living | AI Product Finder</title>
 
   <style>
     * {
@@ -19,9 +18,8 @@
     }
 
     .page {
-      width: 100%;
       min-height: 100vh;
-      padding: 28px 16px;
+      padding: 24px 16px;
       display: flex;
       justify-content: center;
     }
@@ -33,46 +31,41 @@
 
     .hero {
       background: #fffaf2;
-      border: 1px solid rgba(80, 60, 40, 0.12);
       border-radius: 28px;
       padding: 28px 22px;
       box-shadow: 0 18px 45px rgba(80, 60, 40, 0.12);
+      border: 1px solid rgba(80, 60, 40, 0.12);
       margin-bottom: 18px;
     }
 
     .badge {
       display: inline-block;
-      padding: 7px 12px;
+      padding: 8px 12px;
       border-radius: 999px;
       background: #efe2cf;
       color: #6b4f35;
       font-size: 13px;
       margin-bottom: 14px;
+      font-weight: 600;
     }
 
     h1 {
       font-size: 34px;
       line-height: 1.15;
       margin: 0 0 12px;
-      letter-spacing: -0.7px;
+      letter-spacing: -0.6px;
     }
 
     .subtitle {
       font-size: 16px;
-      line-height: 1.65;
+      line-height: 1.7;
       color: #665c52;
-      margin: 0 0 22px;
-    }
-
-    .search-box {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      margin: 0 0 20px;
     }
 
     textarea {
       width: 100%;
-      min-height: 110px;
+      min-height: 120px;
       border: 1px solid rgba(80, 60, 40, 0.18);
       border-radius: 20px;
       padding: 16px;
@@ -90,15 +83,17 @@
     }
 
     button, .link-btn {
+      width: 100%;
       border: none;
       border-radius: 999px;
-      padding: 14px 18px;
+      padding: 15px 18px;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
       text-align: center;
       display: inline-block;
+      margin-top: 12px;
     }
 
     .main-btn {
@@ -112,7 +107,7 @@
     }
 
     .ghost-btn {
-      background: transparent;
+      background: #fff;
       color: #6b4f35;
       border: 1px solid rgba(80, 60, 40, 0.18);
     }
@@ -129,7 +124,7 @@
       background: #fff;
       color: #6b4f35;
       border-radius: 999px;
-      padding: 8px 12px;
+      padding: 9px 12px;
       font-size: 13px;
       cursor: pointer;
     }
@@ -137,10 +132,10 @@
     .result {
       display: none;
       background: #ffffff;
-      border: 1px solid rgba(80, 60, 40, 0.12);
       border-radius: 28px;
       padding: 24px 20px;
       box-shadow: 0 18px 45px rgba(80, 60, 40, 0.10);
+      border: 1px solid rgba(80, 60, 40, 0.12);
       margin-bottom: 18px;
     }
 
@@ -168,17 +163,11 @@
       margin-bottom: 16px;
     }
 
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin: 18px 0;
-    }
-
     .info-card {
       background: #f8f1e8;
       border-radius: 18px;
       padding: 14px;
+      margin-bottom: 10px;
     }
 
     .info-card strong {
@@ -193,18 +182,11 @@
       font-size: 14px;
     }
 
-    .action-row {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
     .catalog {
       background: #fffaf2;
-      border: 1px solid rgba(80, 60, 40, 0.10);
       border-radius: 28px;
       padding: 22px 18px;
+      border: 1px solid rgba(80, 60, 40, 0.10);
     }
 
     .catalog h2 {
@@ -212,17 +194,12 @@
       font-size: 22px;
     }
 
-    .catalog-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-
     .small-card {
       background: #fff;
       border-radius: 18px;
       padding: 14px;
       border: 1px solid rgba(80, 60, 40, 0.10);
+      margin-bottom: 10px;
     }
 
     .small-card strong {
@@ -244,7 +221,7 @@
       line-height: 1.5;
     }
 
-    @media (min-width: 680px) {
+    @media (min-width: 700px) {
       .hero {
         padding: 38px;
       }
@@ -253,25 +230,24 @@
         font-size: 44px;
       }
 
-      .search-box {
-        flex-direction: column;
+      .button-row {
+        display: flex;
+        gap: 10px;
       }
 
-      .action-row {
-        flex-direction: row;
-      }
-
-      .action-row button,
-      .action-row a {
+      .button-row button,
+      .button-row a {
         flex: 1;
       }
 
-      .info-grid {
+      .catalog-grid {
+        display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 10px;
       }
 
-      .catalog-grid {
-        grid-template-columns: 1fr 1fr;
+      .small-card {
+        margin-bottom: 0;
       }
     }
   </style>
@@ -282,25 +258,24 @@
     <div class="container">
 
       <section class="hero">
-        <div class="badge">AI Finder for Everyday Living</div>
+        <div class="badge">AI Product Finder</div>
 
-        <h1>พิมพ์ปัญหาของคุณ แล้วให้ AI ช่วยหาของที่เหมาะที่สุด</h1>
+        <h1>พิมพ์ปัญหา แล้วให้ AI ช่วยหาของที่ทำให้ชีวิตง่ายขึ้น</h1>
 
         <p class="subtitle">
-          ร้านของใช้ที่ไม่ได้ขายแค่ “ของ” แต่ช่วยลดเวลา ลดความวุ่นวาย
-          และทำให้ชีวิตประจำวันง่ายขึ้น
+          ร้านของใช้ที่ไม่ได้ขายแค่ของ แต่ช่วยลดเวลา ลดความรก
+          ลดงานจุกจิก และทำให้ชีวิตประจำวันไหลลื่นขึ้น
         </p>
 
-        <div class="search-box">
-          <textarea id="userInput" placeholder="เช่น ชอบลืมกุญแจตอนเช้า / สายชาร์จรกมาก / จัดกระเป๋าไปเที่ยวทีไรลืมของ / โต๊ะทำงานรก ไม่มีสมาธิ"></textarea>
-          <button class="main-btn" onclick="findProduct()">ให้ AI แนะนำสินค้า</button>
-        </div>
+        <textarea id="userInput" placeholder="เช่น ลืมกุญแจก่อนออกจากบ้าน / สายชาร์จรกมาก / โต๊ะทำงานรก / จัดกระเป๋าไปเที่ยวแล้วลืมของ"></textarea>
+
+        <button class="main-btn" onclick="findProduct()">ให้ AI แนะนำสินค้า</button>
 
         <div class="examples">
           <span class="chip" onclick="useExample('ชอบลืมกุญแจ บัตร และหูฟังก่อนออกจากบ้าน')">ลืมของก่อนออกจากบ้าน</span>
           <span class="chip" onclick="useExample('สายชาร์จรกมาก หาไม่เจอ และพันกันทุกวัน')">สายชาร์จรก</span>
-          <span class="chip" onclick="useExample('จัดกระเป๋าไปเที่ยวทีไรลืมของตลอด')">จัดกระเป๋าแล้วลืมของ</span>
           <span class="chip" onclick="useExample('โต๊ะทำงานรก ไม่มีสมาธิ')">โต๊ะทำงานรก</span>
+          <span class="chip" onclick="useExample('จัดกระเป๋าไปเที่ยวทีไรลืมของตลอด')">จัดกระเป๋าแล้วลืมของ</span>
         </div>
       </section>
 
@@ -309,38 +284,36 @@
         <h2 id="productName" class="product-title"></h2>
         <p id="productDesc" class="product-desc"></p>
 
-        <div class="info-grid">
-          <div class="info-card">
-            <strong>เหมาะกับใคร</strong>
-            <span id="productFor"></span>
-          </div>
-
-          <div class="info-card">
-            <strong>ช่วยอะไร</strong>
-            <span id="productBenefit"></span>
-          </div>
-
-          <div class="info-card">
-            <strong>คำขายหลัก</strong>
-            <span id="productHook"></span>
-          </div>
-
-          <div class="info-card">
-            <strong>ราคาเริ่มต้น</strong>
-            <span id="productPrice"></span>
-          </div>
+        <div class="info-card">
+          <strong>เหมาะกับใคร</strong>
+          <span id="productFor"></span>
         </div>
 
-        <div class="action-row">
-          <a id="orderBtn" class="link-btn main-btn" target="_blank" href="#">
+        <div class="info-card">
+          <strong>ช่วยอะไร</strong>
+          <span id="productBenefit"></span>
+        </div>
+
+        <div class="info-card">
+          <strong>คำขายหลัก</strong>
+          <span id="productHook"></span>
+        </div>
+
+        <div class="info-card">
+          <strong>ราคาเริ่มต้น</strong>
+          <span id="productPrice"></span>
+        </div>
+
+        <div class="button-row">
+          <a id="orderBtn" class="link-btn main-btn" target="_blank" href="https://www.facebook.com/profile.php?id=61574698212892">
             ทักสั่งซื้อผ่านเพจ
           </a>
-          <button class="secondary-btn" onclick="copyResult()">คัดลอกคำแนะนำนี้</button>
+          <button class="secondary-btn" onclick="copyResult()">คัดลอกคำแนะนำ</button>
           <button class="ghost-btn" onclick="resetSearch()">ค้นหาใหม่</button>
         </div>
 
         <p class="notice">
-          หมายเหตุ: ระบบนี้เป็นเวอร์ชันทดลองสำหรับช่วยเลือกสินค้าเบื้องต้น
+          ระบบนี้เป็นเวอร์ชันทดลองสำหรับช่วยเลือกสินค้าเบื้องต้น
           ถ้าต้องการคำแนะนำเพิ่มเติม สามารถทักเพจเพื่อให้แอดมินช่วยเลือกได้
         </p>
       </section>
@@ -383,7 +356,7 @@
         forWho: "คนที่รีบตอนเช้า ชอบลืมของ หรือเสียเวลาหาของก่อนออกจากบ้าน",
         benefit: "ลดเวลาหาของซ้ำ ๆ ทุกวัน และช่วยให้หยิบของครบก่อนออกจากบ้าน",
         hook: "วางไว้จุดเดียว หยิบครบ แล้วออกบ้านได้เลย",
-        price: "เริ่มต้นประมาณ 129–199 บาท"
+        price: "129–199 บาท"
       },
       {
         name: "Desk Organizer",
@@ -392,7 +365,7 @@
         forWho: "นักศึกษา คนทำงานที่บ้าน หรือคนที่รู้สึกว่าโต๊ะรกแล้วไม่มีสมาธิ",
         benefit: "ช่วยให้โต๊ะเป็นระเบียบ หยิบของง่าย และเริ่มทำงานได้ไวขึ้น",
         hook: "โต๊ะโล่ง สมองโล่ง งานเดินไวขึ้น",
-        price: "เริ่มต้นประมาณ 99–199 บาท"
+        price: "99–199 บาท"
       },
       {
         name: "Cable Organizer Box",
@@ -401,7 +374,7 @@
         forWho: "คนที่มีสายชาร์จหลายเส้น ใช้มือถือ iPad หูฟัง หรือ power bank เป็นประจำ",
         benefit: "ลดความรำคาญจากสายพันกัน และช่วยให้หาสายที่ต้องการเจอเร็วขึ้น",
         hook: "หยิบสายถูกเส้นใน 3 วินาที",
-        price: "เริ่มต้นประมาณ 79–159 บาท"
+        price: "79–159 บาท"
       },
       {
         name: "Ready Travel Kit",
@@ -410,7 +383,7 @@
         forWho: "คนที่เดินทางบ่อย ค้างคืนกะทันหัน หรือจัดกระเป๋าทีไรลืมของทุกที",
         benefit: "ช่วยลดเวลาจัดกระเป๋า และลดโอกาสลืมของจำเป็น",
         hook: "หยิบกล่องเดียว พร้อมเดินทาง",
-        price: "เริ่มต้นประมาณ 149–249 บาท"
+        price: "149–249 บาท"
       },
       {
         name: "Cleaning Emergency Kit",
@@ -419,7 +392,7 @@
         forWho: "คนอยู่หอ คอนโด คนใช้รถ หรือคนที่อยากมีชุดแก้ปัญหาเลอะเล็ก ๆ พร้อมใช้",
         benefit: "ช่วยแก้สถานการณ์เลอะกะทันหัน ไม่ต้องวิ่งหาของทำความสะอาดทีละชิ้น",
         hook: "เลอะเมื่อไร แก้ได้ทันที",
-        price: "เริ่มต้นประมาณ 99–199 บาท"
+        price: "99–199 บาท"
       },
       {
         name: "Bag Organizer",
@@ -428,16 +401,16 @@
         forWho: "คนที่ของในกระเป๋ารก หรือเปลี่ยนกระเป๋าบ่อยแล้วกลัวลืมของ",
         benefit: "ช่วยให้ย้ายของระหว่างกระเป๋าได้เร็ว และหาของในกระเป๋าง่ายขึ้น",
         hook: "เปลี่ยนกระเป๋าใน 10 วินาที ของสำคัญไม่ตกหล่น",
-        price: "เริ่มต้นประมาณ 79–159 บาท"
+        price: "79–159 บาท"
       },
       {
         name: "Pill / Vitamin Organizer",
         keywords: ["ยา", "วิตามิน", "อาหารเสริม", "ลืมกิน", "ผู้สูงวัย", "สุขภาพ", "เม็ด", "กระปุก"],
         desc: "กล่องจัดยาและวิตามินสำหรับแบ่งตามวันหรือช่วงเวลา ช่วยให้หยิบง่ายขึ้น",
         forWho: "คนที่กินวิตามินหลายตัว คนดูแลผู้สูงวัย หรือคนที่ไม่อยากเปิดหลายกระปุกทุกวัน",
-        benefit: "ช่วยจัดระบบการกินยา/วิตามินให้ง่ายขึ้น และลดความวุ่นวายตอนเช้า",
+        benefit: "ช่วยจัดระบบการกินยาและวิตามินให้ง่ายขึ้น และลดความวุ่นวายตอนเช้า",
         hook: "จัดไว้ล่วงหน้า หยิบง่าย ไม่ต้องเปิดหลายกระปุก",
-        price: "เริ่มต้นประมาณ 59–129 บาท"
+        price: "59–129 บาท"
       },
       {
         name: "Refill Box",
@@ -446,7 +419,7 @@
         forWho: "คนที่ชอบลืมซื้อของใช้ในบ้าน หรือไม่รู้ว่าอะไรใกล้หมดจนต้องรื้อดู",
         benefit: "ช่วยให้เห็นของใช้คงเหลือง่ายขึ้น และเติมของก่อนหมดจริง",
         hook: "รู้ว่าอะไรใกล้หมด โดยไม่ต้องรื้อทั้งบ้าน",
-        price: "เริ่มต้นประมาณ 99–199 บาท"
+        price: "99–199 บาท"
       }
     ];
 
@@ -483,7 +456,7 @@
           forWho: "คนที่อยากเริ่มจัดชีวิตให้เป็นระบบ แต่ยังไม่แน่ใจว่าควรเริ่มจากจุดไหน",
           benefit: "ช่วยลดเวลาหาของ ลดความรก และทำให้กิจวัตรประจำวันไหลลื่นขึ้น",
           hook: "เริ่มจากจุดที่คุณเสียเวลาบ่อยที่สุด",
-          price: "เริ่มต้นประมาณ 99–249 บาท"
+          price: "99–249 บาท"
         };
       }
 
@@ -498,9 +471,6 @@
       document.getElementById("productHook").innerText = product.hook;
       document.getElementById("productPrice").innerText = product.price;
 
-      const pageUrl = "https://www.facebook.com/profile.php?id=61574698212892";
-      document.getElementById("orderBtn").href = pageUrl;
-
       document.getElementById("resultBox").classList.add("show");
       document.getElementById("resultBox").scrollIntoView({ behavior: "smooth" });
     }
@@ -511,23 +481,13 @@
     }
 
     function copyResult() {
-      const text = `
-สินค้าที่แนะนำ: ${document.getElementById("productName").innerText}
-
-${document.getElementById("productDesc").innerText}
-
-เหมาะกับใคร:
-${document.getElementById("productFor").innerText}
-
-ช่วยอะไร:
-${document.getElementById("productBenefit").innerText}
-
-คำขายหลัก:
-${document.getElementById("productHook").innerText}
-
-ราคาเริ่มต้น:
-${document.getElementById("productPrice").innerText}
-      `.trim();
+      const text =
+        "สินค้าที่แนะนำ: " + document.getElementById("productName").innerText + "\n\n" +
+        document.getElementById("productDesc").innerText + "\n\n" +
+        "เหมาะกับใคร:\n" + document.getElementById("productFor").innerText + "\n\n" +
+        "ช่วยอะไร:\n" + document.getElementById("productBenefit").innerText + "\n\n" +
+        "คำขายหลัก:\n" + document.getElementById("productHook").innerText + "\n\n" +
+        "ราคาเริ่มต้น:\n" + document.getElementById("productPrice").innerText;
 
       navigator.clipboard.writeText(text).then(() => {
         alert("คัดลอกคำแนะนำสินค้าแล้ว");
