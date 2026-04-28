@@ -220,7 +220,123 @@
       color: #7a6c60;
       line-height: 1.5;
     }
+/* วาง CSS search bar ตรงนี้ */
 
+.search-wrap {
+
+  display: flex;
+
+  width: 100%;
+
+  border: 2px solid #f0065f;
+
+  border-radius: 0;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  margin-top: 18px;
+
+}
+
+.search-input {
+
+  flex: 1;
+
+  border: none;
+
+  padding: 16px;
+
+  font-size: 18px;
+
+  outline: none;
+
+  color: #2f2a24;
+
+  background: #fff;
+
+}
+
+.search-btn {
+
+  width: 120px;
+
+  border-radius: 0;
+
+  margin: 0;
+
+  background: #f0065f;
+
+  color: #fff;
+
+  font-size: 18px;
+
+}
+
+.search-section {
+
+  margin-top: 24px;
+
+}
+
+.section-title-row {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+.section-title-row h2 {
+
+  font-size: 22px;
+
+  margin: 0 0 12px;
+
+}
+
+.clear-text {
+
+  color: #9b9b9b;
+
+  font-size: 13px;
+
+}
+
+.popular-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+
+}
+
+.popular-item {
+
+  background: #fff;
+
+  border: 1px solid rgba(80, 60, 40, 0.10);
+
+  border-radius: 16px;
+
+  padding: 14px;
+
+  font-size: 15px;
+
+  color: #4d443c;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(80, 60, 40, 0.06);
+}
+    
     @media (min-width: 700px) {
       .hero {
         padding: 38px;
@@ -267,9 +383,38 @@
           ลดงานจุกจิก และทำให้ชีวิตประจำวันไหลลื่นขึ้น
         </p>
 
-        <textarea id="userInput" placeholder="เช่น ลืมกุญแจก่อนออกจากบ้าน / สายชาร์จรกมาก / โต๊ะทำงานรก / จัดกระเป๋าไปเที่ยวแล้วลืมของ"></textarea>
+        <div class="search-wrap">
+  <input id="userInput" class="search-input" type="text" placeholder="แนะนำสำหรับคุณ">
+  <button class="search-btn" onclick="findProduct()">ค้นหา</button>
+</div>
 
-        <button class="main-btn" onclick="findProduct()">ให้ AI แนะนำสินค้า</button>
+<div class="search-section">
+  <div class="section-title-row">
+    <h2>ประวัติการค้นหา</h2>
+    <span class="clear-text">ล้างข้อมูลทั้งหมด</span>
+  </div>
+
+  <div class="examples">
+    <span class="chip" onclick="useExample('น้ำหอมให้แฟนผู้ชาย')">น้ำหอมให้แฟนผู้ชาย</span>
+    <span class="chip" onclick="useExample('กลิ่นผู้ชายสุขุม')">กลิ่นผู้ชายสุขุม</span>
+  </div>
+</div>
+
+<div class="search-section">
+  <div class="section-title-row">
+    <h2>คำค้นหายอดนิยม</h2>
+    <span class="clear-text">ซ่อน 👁</span>
+  </div>
+
+  <div class="popular-grid">
+    <div class="popular-item" onclick="useExample('DR Savage')">DR.Savage</div>
+    <div class="popular-item" onclick="useExample('น้ำหอมผู้ชาย')">น้ำหอมผู้ชาย</div>
+    <div class="popular-item" onclick="useExample('ของขวัญให้แฟน')">ของขวัญให้แฟน</div>
+    <div class="popular-item" onclick="useExample('ไม้หอมในห้อง')">ไม้หอมในห้อง</div>
+    <div class="popular-item" onclick="useExample('น้ำหอมผู้หญิงหวาน')">น้ำหอมผู้หญิงหวาน</div>
+    <div class="popular-item" onclick="useExample('น้ำหอมมงคล')">น้ำหอมมงคล</div>
+  </div>
+</div>
 
         <div class="examples">
           <span class="chip" onclick="useExample('ชอบลืมกุญแจ บัตร และหูฟังก่อนออกจากบ้าน')">ลืมของก่อนออกจากบ้าน</span>
