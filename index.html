@@ -336,7 +336,75 @@
 
   box-shadow: 0 8px 20px rgba(80, 60, 40, 0.06);
 }
-    
+   .product-showcase {
+  background: #fffaf2;
+  border-radius: 28px;
+  padding: 22px 18px;
+  border: 1px solid rgba(80, 60, 40, 0.10);
+  margin-bottom: 18px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid rgba(80, 60, 40, 0.10);
+  border-radius: 18px;
+  padding: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(80, 60, 40, 0.06);
+}
+
+.product-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  background: #f3eadf;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9d7650;
+  font-size: 13px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card-name {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 5px;
+  color: #2f2a24;
+}
+
+.product-card-status {
+  font-size: 12px;
+  color: #f0065f;
+  margin-bottom: 6px;
+}
+
+.product-card-desc {
+  font-size: 13px;
+  color: #6a5f55;
+  line-height: 1.45;
+}
+
+.product-card-price {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3c332b;
+} 
     @media (min-width: 700px) {
       .hero {
         padding: 38px;
@@ -423,9 +491,18 @@
           <span class="chip" onclick="useExample('จัดกระเป๋าไปเที่ยวทีไรลืมของตลอด')">จัดกระเป๋าแล้วลืมของ</span>
         </div>
       </section>
+      
+<section class="product-showcase">
+  <div class="section-title-row">
+    <h2>สินค้าแนะนำ</h2>
+    <span class="clear-text">กดสินค้าเพื่อดูคำแนะนำ</span>
+  </div>
 
-      <section id="resultBox" class="result">
-        <div class="result-label">สินค้าที่เหมาะกับปัญหานี้</div>
+  <div id="productGrid" class="product-grid"></div>
+</section>
+
+<section id="resultBox" class="result">
+  <div class="result-label">สินค้าที่เหมาะกับปัญหานี้</div>
         <h2 id="productName" class="product-title"></h2>
         <p id="productDesc" class="product-desc"></p>
 
@@ -647,8 +724,40 @@ rotatePlaceholder();
 
 setInterval(rotatePlaceholder, 1000);
 
-    function findProduct() {
-      const input = document.getElementById("userInput").value.trim().toLowerCase();
+function renderProductGrid() {
+  const grid = document.getElementById("productGrid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.onclick = function () {
+      document.getElementById("userInput").value = product.name;
+      showResult(product);
+    };
+
+    const imageHTML = product.image
+      ? `<img src="${product.image}" alt="${product.name}">`
+      : `<span>${product.status || "สินค้าแนะนำ"}</span>`;
+
+    card.innerHTML = `
+      <div class="product-thumb">${imageHTML}</div>
+      <div class="product-card-name">${product.name}</div>
+      <div class="product-card-status">${product.status || ""}</div>
+      <div class="product-card-desc">${product.hook}</div>
+      <div class="product-card-price">${product.price}</div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+renderProductGrid();
+
+function findProduct() {
+    const input = document.getElementById("userInput").value.trim().toLowerCase();
 
       if (!input) {
         alert("ลองพิมพ์ปัญหาที่เจอก่อนนะครับ เช่น สายชาร์จรกมาก หรือ ชอบลืมกุญแจตอนเช้า");
