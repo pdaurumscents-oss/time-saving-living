@@ -615,6 +615,37 @@
     price: "กำลังเตรียมสินค้า / เปิดให้กดสนใจก่อน"
   }    
 ];
+    const rotatingPlaceholders = [
+  "คำแนะนำสำหรับคุณ",
+  "น้ำหอม",
+  "ของใช้ในบ้าน",
+  "ของตกแต่งบ้าน",
+  "น้ำหอมผู้ชาย",
+  "น้ำหอมผู้หญิง",
+  "สินค้าที่ทำให้คุณออกจากบ้านได้เร็วขึ้น",
+  "ของที่ช่วยประหยัดเวลาคุณ"
+];
+    let placeholderIndex = 0;
+
+function rotatePlaceholder() {
+
+  const input = document.getElementById("userInput");
+
+  if (!input) return;
+
+  if (input.value.trim() === "") {
+
+    input.placeholder = rotatingPlaceholders[placeholderIndex];
+
+    placeholderIndex = (placeholderIndex + 1) % rotatingPlaceholders.length;
+
+  }
+
+}
+
+rotatePlaceholder();
+
+setInterval(rotatePlaceholder, 1000);
 
     function findProduct() {
       const input = document.getElementById("userInput").value.trim().toLowerCase();
